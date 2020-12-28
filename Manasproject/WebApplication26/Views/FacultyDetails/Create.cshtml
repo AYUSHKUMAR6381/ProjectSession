@@ -1,0 +1,127 @@
+﻿@model WebApplication26.Models.FacultyDetail
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create1</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body style="color: white;background-image: linear-gradient(pink, lightblue,white);">
+    <nav class="navbar-expand-sm navbar-toggleable-sm  navbar-dark bg-dark border-bottom box-shadow mb-3">
+        <div class="ml-5 mr-5 ">
+
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse ">
+                <ul class="navbar-nav flex-grow-1">
+
+                    <li class="nav-item">
+                        <a class="nav-link text-light badge badge-primary text-wrap text-uppercase h1 navigation" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="logout" onclick="location.href='@Url.Action("Logout", "Login")'">logout</button>
+                    </li>
+
+                </ul>
+
+
+            </div>
+
+        </div>
+
+
+
+    </nav>
+
+    <h1 style="color:black">Create Faculty Account</h1>
+
+
+    <hr />
+
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row m-5">
+            <div class="col-md-6 p-5" style="background-color:#0e0e38;">
+                <div class="form-group">
+                    <label asp-for="FacultyId" class="control-label"></label>
+                    <input asp-for="FacultyId" class="form-control" />
+                    <span asp-validation-for="FacultyId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FirstName" class="control-label"></label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label"></label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DateOfBirth" class="control-label"></label>
+                    <input asp-for="DateOfBirth" class="form-control" />
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Address" class="control-label"></label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-sm-6 p-5" style="background-color:#0e0e38;">
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Contact" class="control-label"></label>
+                    <input asp-for="Contact" class="form-control" />
+                    <span asp-validation-for="Contact" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Pswd" class="control-label"></label>
+                    <input asp-for="Pswd" class="form-control" />
+                    <span asp-validation-for="Pswd" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FkDeptId" class="control-label"></label>
+                    <select asp-for="FkDeptId" class="form-control" asp-items="ViewBag.FkDeptId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FatherName" class="control-label"></label>
+                    <input asp-for="FatherName" class="form-control" />
+                    <span asp-validation-for="FatherName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</body>
+</html>

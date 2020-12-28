@@ -1,0 +1,53 @@
+﻿@model IEnumerable<WebApplication26.Models.AttendanceDetail>
+@using Microsoft.AspNetCore.Http;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+@if (@Context.Session.GetString("Type") == "2")
+            {
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Attendance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkStud)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Attendance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FkStud.Contact)
+                </td>
+                @if (@Context.Session.GetString("Type") == "2")
+                {
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PkAttndId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.PkAttndId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.PkAttndId">Delete</a>
+                </td>}
+            </tr>
+        }
+    </tbody>
+</table>

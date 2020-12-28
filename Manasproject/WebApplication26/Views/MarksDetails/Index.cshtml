@@ -1,0 +1,65 @@
+﻿@model IEnumerable<WebApplication26.Models.MarksDetail>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SessionalMarks)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MainExamMarks)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalMarks)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkSem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkStud)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkSub)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SessionalMarks)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MainExamMarks)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalMarks)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FkSem.PkSemId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FkStud.Contact)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FkSub.PkSubjectId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PkMarksId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PkMarksId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PkMarksId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

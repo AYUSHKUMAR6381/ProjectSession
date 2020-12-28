@@ -1,0 +1,224 @@
+﻿@model WebApplication26.Models.StudentDetail
+@using Microsoft.AspNetCore.Http;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Myprofilee</title>
+    <link href="~/css/MYprofile.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        .navigation {
+            margin: 10px;
+            font-size: large;
+        }
+    </style>
+</head>
+<body style=" background-image: linear-gradient(pink, White, blue);" class=".bg-success">
+   
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar navbar-dark bg-dark border-bottom box-shadow mb-3">
+            <div class="ml-5 mr-5 ">
+
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse ">
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (@Context.Session.GetString("Type") == "1")
+                        {
+                        <li class="nav-item">
+                            <a class="nav-link text-light badge badge-primary text-wrap text-uppercase  navigation" style="padding:5px" asp-action="Edit" asp-route-id="@Model.PkStudentId">Edit Profile</a>
+                        </li>
+                        }
+                        @if (@Context.Session.GetString("Type") == "1")
+                        {
+                        <li class="nav-item">
+                            <a class="nav-link text-light badge badge-primary text-wrap text-uppercase  navigation" style="padding:5px" asp-area="" asp-controller="AttendanceDetails" asp-action="Index">AttendanceDetails</a>
+                        </li>
+                        }
+
+
+                        @if (@Context.Session.GetString("Type") == "1")
+                        {
+                        <li class="nav-item">
+                            <a class="nav-link text-light badge badge-primary text-wrap text-uppercase  navigation " style="padding:5px" asp-area="" asp-controller="StudentDetails" asp-action="Index">StudentDetails</a>
+                        </li>
+                        }
+                        @if (@Context.Session.GetString("Type") == "1")
+                        {
+                        <li class="nav-item">
+                            <a class="nav-link text-light badge badge-primary text-wrap text-uppercase  navigation " style="padding:5px" asp-area="" asp-controller="StudentDetails" asp-action="Myprofilee">My Profile</a>
+                        </li>
+                        }
+
+
+
+
+
+                        <li class="nav-item">
+                            <button class="logout" onclick="location.href='@Url.Action("Logout", "Login")'">logout</button>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+
+            </div>
+
+
+
+        </nav>
+  
+    <div class="container">
+        <div class="main-body">
+
+            <!-- Breadcrumb -->
+            <!-- /Breadcrumb -->
+
+            <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                @if ((Model.studentPic == null)|| (Model.studentPic == "null"))
+                                {
+                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Student" class="rounded-circle" width="300" height="300">}
+                                else
+                                {
+                                <img src="/images/@Model.studentPic" class="rounded-circle" width="300" height="250">}
+
+
+                                <div class="mt-3">
+                                    <h4>@Model.FirstName</h4>
+                                    <p class="text-secondary mb-1">@Model.Course</p>
+                                    <p class="text-muted font-size-sm">Roll NO:@Model.PkStudentId</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-3">
+                        <ul class="list-group list-group-flush">
+
+
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h3><i class="text-secondary">Total Classes:@ViewBag.attendance</i></h3>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h3><i class="text-secondary">Total Classes Attended:@ViewBag.attended</i></h3>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        <div class="card-body "style="padding: 1rem;">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Full Name</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @Model.FirstName @Model.LastName
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Email</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @Model.Email
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Phone</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @Model.Contact
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Address</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @Model.Address
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">DOB</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @Model.DateOfBirth
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row gutters-sm">
+                        <div class="col-sm-6 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body" style="padding: 1rem;">
+                                    <h4 class="d-flex align-items-center mb-3">Marks Scored</h4>
+                                    <small></small>
+                                    <div class=" mb-3 m-5" style="height: 5px ">
+                                        <h5><i class="text-secondary">Sem 1 Scores(%):@ViewBag.marks[0]</i></h5>
+                                    </div>
+                                    <div class=" mb-3  m-5" style="height: 5px">
+                                        <h5><i class="text-secondary">Sem 2 Scores(%):@ViewBag.marks[1]</i></h5>
+                                    </div>
+                                    <div class=" mb-3  m-5" style="height: 5px">
+                                        <h5><i class="text-secondary"> Sem 3 Scores(%):@ViewBag.marks[2]</i></h5>
+                                    </div>
+                                    <div class=" mb-3  m-5" style="height: 5px">
+                                        <h5><i class="text-secondary">Sem 4 Scores(%):@ViewBag.marks[3]</i></h5>
+                                    </div>
+                                   
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h4 class="d-flex align-items-center mb-3">Marks Scored</h4>
+                                    <small></small>
+                                    <div class=" mb-3  m-5" style="height: 5px">
+                                        <h5 class="text-secondary">Sem 5 Scores(%):@ViewBag.marks[4]</h5>
+                                    </div>
+                                    <div class=" mb-3  m-5" style="height: 5px">
+                                        <h5 class="text-secondary">Sem 6 Scores(%):@ViewBag.marks[5]</h5>
+                                    </div>
+                                    <div class=" mb-3  m-5" style="height: 5px">
+                                        <h5 class="text-secondary">Sem 7 Scores(%):@ViewBag.marks[6]</h5>
+                                    </div>
+                                    <div class=" mb-3  m-5" style="height: 5px">
+                                        <h5 class="text-secondary" paral>Sem 8 Scores(%):@ViewBag.marks[7]</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+﻿@model WebApplication26.Models.MarksDetail
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>MarksDetail</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SessionalMarks)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SessionalMarks)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MainExamMarks)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MainExamMarks)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TotalMarks)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TotalMarks)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FkSem)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FkSem.PkSemId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FkStud)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FkStud.Contact)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FkSub)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FkSub.PkSubjectId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.PkMarksId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
